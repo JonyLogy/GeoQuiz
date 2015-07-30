@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">GeoQuiz</string>
+
+    <string name="score">Очки</string>
+
+    <string name="true_button">Правильно</string>
+    <string name="false_button">Неправильно</string>
+    
+    <string name="correct_toast">Верно!</string>
+    <string name="incorrect_toast">Неверно=(</string>
+
+    <string name="question_oceans">Тихий Окена больше Атлантичесого Океана</string>
+    <string name="question_africa">Река Нил начинается в Египте</string>
+    <string name="question_americas">Амазонка самая длинная река в Америке</string>
+    <string name="question_asia">Озеро Байкал самое глубокое и древнее пресноводное озеро в мире</string>
+    
+    <string name="cheat_button">Получить подсказку</string>
+    <string name="warning_text">Вы уверены?</string>
+    <string name="show_answer_button">Показать ответ</string>
+    <string name="judgment_toast">Жулик</string>
+    
+    <string name="action_settings">Settings</string>
+    
+    
+</resources>
