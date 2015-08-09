@@ -7,9 +7,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-/**
- * Created by Jony on 28.07.2015.
- */
 public class CheatActivity extends Activity {
 
     public static final String EXTRA_ANSWER_IS_TRUE =
@@ -18,14 +15,27 @@ public class CheatActivity extends Activity {
     public static final String EXTRA_ANSWER_SHOWN =
             "com.example.jony.geoquiz.answer_shown";
 
+    public static final String ANSWER_IS_SHOWN =
+            "com.example.jony.geoquiz.answer_shown";
+
+    private static boolean isShown = false;
+
     private boolean mAnswerIsTrue;
     private TextView mAnswerTextView;
     private Button mShowAnswer;
 
     private void setAnswerShownResult(boolean isAnswerShown) {
+        isShown = isAnswerShown;
         Intent data = new Intent();
         data.putExtra(EXTRA_ANSWER_SHOWN, isAnswerShown);
         setResult(RESULT_OK, data);
+    }
+
+    private void setAnswerText (boolean answer) {
+        if (answer)
+            mAnswerTextView.setText(R.string.true_button);
+        else
+            mAnswerTextView.setText(R.string.false_button);
     }
 
     @Override
@@ -41,13 +51,24 @@ public class CheatActivity extends Activity {
         mShowAnswer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (mAnswerIsTrue)
-                    mAnswerTextView.setText(R.string.true_button);
-                else
-                    mAnswerTextView.setText(R.string.false_button);
-
+                setAnswerText(mAnswerIsTrue);
                 setAnswerShownResult(true);
             }
         });
+
+        if (savedInstanceState != null) {
+            isShown = savedInstanceState.getBoolean(ANSWER_IS_SHOWN, false);
+        }
+
+        if(isShown) {
+            setAnswerShownResult(isShown);
+            setAnswerText(mAnswerIsTrue);
+        }
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        super.onSaveInstanceState(savedInstanceState);
+        savedInstanceState.putBoolean(ANSWER_IS_SHOWN, isShown);
     }
 }
